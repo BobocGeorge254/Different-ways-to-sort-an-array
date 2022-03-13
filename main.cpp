@@ -16,7 +16,7 @@ vector <ULL> MS, QS, QSR, RS10, RS65536, STLS , SS, IS ;
 //fiecare bit din configuratia sa.
 ULL Random() {
     ULL x = 0 ;
-    for (int i = 0 ; i < 63 ; ++i ) {
+    for (int i = 0 ; i < 31 ; ++i ) {
         bool bit = rand() % 2 ;
         x = x + bit * ( 1 << i ) ;
     }
@@ -100,13 +100,13 @@ void count_sort_by_exp_65536(vector<ULL>& v, ULL exp, int base){
     vector<ULL> output(v.size()), cnt(base, 0);
 
     for(int i = 0 ; i < v.size(); ++i )
-        cnt[(v[i]/exp) >> 16]++;
+        cnt[(v[i]/exp) & 65535]++;
 
     for(int i = 1; i < base; i++)
         cnt[i] += cnt[i-1];
 
     for(int i = v.size()-1; i >= 0; i--)
-        output[--cnt[(v[i]/exp) >> 16]] = v[i];
+        output[--cnt[(v[i]/exp) & 65535]] = v[i];
 
     v = output;
 }
@@ -208,7 +208,8 @@ int main(){
 
     srand(time(NULL));
     int test_length;
-    int start,stop,length[]= {50,100,1000,10000,100000,1000000, 10000000};
+    cout << "--------Sorting algorithms comparison---------" << endl << endl ;
+    int start,stop,length[]= {50,100,1000,10000,100000,1000000, 10000000, 100000000};
     for (int i = 1 ; i <= 7 ; ++i ){
         cout << "Testul" << " " << i << " - " << " " << length[i - 1] << " elemente " << endl ;
         test_length = length[i - 1];
@@ -224,30 +225,26 @@ int main(){
         start = clock();
         QuickSort(QS,0,test_length - 1);
         stop = clock();
-        cout << "QuickSort: - pivot nerandomizat: " << fixed << double(stop-start)/CLOCKS_PER_SEC << " secunde" << endl ;
+        cout << "QuickSort - pivot nerandomizat: " << fixed << double(stop-start)/CLOCKS_PER_SEC << " secunde" << endl ;
         //vprint(QS);
 
         start = clock();
         QuickSortRandom(QSR,0,test_length - 1);
         stop = clock();
-        cout << "QuickSort: - pivot randomizat: " << fixed << double(stop-start)/CLOCKS_PER_SEC << " secunde" << endl ;
+        cout << "QuickSort - pivot randomizat: " << fixed << double(stop-start)/CLOCKS_PER_SEC << " secunde" << endl ;
         //vprint(QSR);
 
-        /*
         start = clock();
         RadixSort(RS10,10);
         stop = clock();
         cout << "RadixSort - baza 10: " << fixed << double(stop-start)/CLOCKS_PER_SEC << " secunde" << endl ;
         //vprint(RS10);
-        */
 
-        /*
         start = clock();
         RadixSort(RS65536,65536);
         stop = clock();
         cout << "RadixSort - baza 2^16: " << fixed << double(stop-start)/CLOCKS_PER_SEC << " secunde" << endl ;
-        vprint(RS65536);
-        */
+        //vprint(RS65536);
 
 
         start = clock();
