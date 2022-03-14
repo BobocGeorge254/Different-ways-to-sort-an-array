@@ -14,7 +14,7 @@ Radix Sort - sorting algorithm that sorts numbers based on the position of their
 Insertion Sort - insertion sort iterates, consuming one input element each repetition, and grows a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain. Average complexity - O(n^2)
 
 
-
+Shell Sort - it can be seen as either a generalization of sorting by exchange or sorting by insertion. The method starts by sorting pairs of elements far apart from each other, then progressively reducing the gap between elements to be compared. Average complexity - O(n log^2 n)
 
 Here are the results.
 
@@ -76,7 +76,7 @@ QuickSort - randomised pivot: 0.702000 seconds<br>
 RadixSort - base 10: 0.527000 seconds<br>
 RadixSort - base 2^16: 0.110000 seconds<br>
 ShellSort: 0.692000 seconds<br>
-InsertionSort: 2035.000000 seconds<br>
+InsertionSort: 2035.631411 seconds<br>
 STLSort: 0.385000 seconds<br>
 
 Test 7 -  10000000 elements<br>
@@ -104,3 +104,6 @@ Let's start by getting the Insertion Sort out of the way. Being the only algorit
 
 Now let's talk about the O(nlogn) class of complexity, comparing Merge Sort with Quick Sort and Shell Sort. <br>
 I decided to implement a Quick Sort algorithm with the pivot being a fixed number every time ( the rightmost element ), and another one with pivot being a random number in the array. As expected, for random data in the array, there is no difference in between the two, even though the second one might be better in some specific cases, like when the array is sorted in descending order. Note that Quick Sort is very unstable, and poor choices of the pivot might result in huge time gaps, but for the avarage case it's still the fastest of all three for medium and larger arrays. Shell Sort and Merge Sort have very similar results timewise, but it's worth saying that the second uses another auxiliary array for the Merge operation, making it problematic when we already work with huge arrays. Since Shell Sort is a particularisation of the Insertion Sort, it is as well used to sort smaller amounts of data, with close or even better results then any other O(nlogn) algorithm.
+
+
+Now, as expected, being the algorithm with the best average complexity, Radix Sort it's the fastest of all sorting algorithms. Even though the base 10 algorithm has similar results to Quick Sort, it has the advantage to be more stable for the worst case, but the disadvantage to use auxiliary arrays . Similarly, the base 2^16 algorithm has the same advantages and disadvantages, but the trade-off between time and memory might recommend it as the best sorting algorithm in general.
