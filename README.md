@@ -1,6 +1,13 @@
 # Different-ways-to-sort-an-array
-Let's find out together which is the fastest sorting method by running some basic algorithms some basic tests
-First of all, here are the results.
+Let's find out together which is the fastest sorting method by running some basic tests.
+First let's see how each algorithm it's supposed to work.
+
+Merge Sort - sorting algorithm based on divide and conquer method. You divide each array into two halves recursively until you reach sub-arrays of one element, which are obviously sorted. Then you merge the two little sub-arrays obtaining a bigger sorted sub-array and so on, until you build up the entire solution. Average complexity - O(nlogn).
+
+
+Quick Sort - sorting algorithm based on divide and conquer method. At each step you choose an element called "pivot", then partitions the given array around the pivot, meaning that the pivot it's in its correct position and all smaller elements are on its left side and all bigger elements are on its right side. Similar to Merge Sort, you recursively do the same thing for each sub-array (on the left and on the right side of the pivot), until you build the sorted array. Avarage complexity - O(nlogn), worst case - O(n^2).
+
+Here are the results.
 
 Test 1 -  50 elements<br>
 MergeSort: 0.000000 seconds <br>
