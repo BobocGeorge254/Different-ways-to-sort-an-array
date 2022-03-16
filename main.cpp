@@ -16,7 +16,7 @@ vector <ULL> MS, QS, QSR, RS10, RS65536, STLS , SS, IS ;
 //fiecare bit din configuratia sa.
 ULL Random() {
     ULL x = 0 ;
-    for (int i = 0 ; i < 31 ; ++i ) {
+    for (int i = 0 ; i < 63 ; ++i ) {
         bool bit = rand() % 2 ;
         x = x + bit * ( 1 << i ) ;
     }
